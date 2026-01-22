@@ -13,6 +13,23 @@ builder.Services.Configure<SupabaseSettings>(
 var supabaseSettings = builder.Configuration
     .GetSection("Supabase")
     .Get<SupabaseSettings>();
+// Leer variables de entorno como fallback (Supabase__Url / Supabase__Key o SUPABASE_URL / SUPABASE_KEY)
+var envUrl = Environment.GetEnvironmentVariable("Supabase__Url") ?? Environment.GetEnvironmentVariable("SUPABASE_URL");
+var envKey = Environment.GetEnvironmentVariable("Supabase__Key") ?? Environment.GetEnvironmentVariable("SUPABASE_KEY");
+
+if (supabaseSettings == null)
+{
+    supabaseSettings = new SupabaseSettings();
+}
+
+if (!string.IsNullOrEmpty(envUrl)) supabaseSettings.Url = envUrl;
+if (!string.IsNullOrEmpty(envKey)) supabaseSettings.Key = envKey;
+
+// Validar que tenemos configuración mínima antes de inicializar el cliente
+if (string.IsNullOrEmpty(supabaseSettings.Url) || string.IsNullOrEmpty(supabaseSettings.Key))
+{
+    throw new InvalidOperationException("Supabase configuration missing. Set Supabase__Url and Supabase__Key environment variables or provide them in configuration.");
+}
 
 // Inicializar cliente de Supabase
 var options = new SupabaseOptions
