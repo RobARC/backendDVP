@@ -1,117 +1,114 @@
-# 🚀 PersonasAPI - Backend .NET 8
-
-API REST desarrollada en .NET 8 con integración a Supabase para la gestión de personas y autenticación de usuarios.
-
-## Tabla de Contenidos
-
-- [Descripción](#descripción)
-- [Tecnologías](#tecnologías)
-- [Arquitectura](#arquitectura)
-- [Requisitos Previos](#requisitos-previos)
-- [Instalación](#instalación)
-- [Configuración](#configuración)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Endpoints API](#-endpoints-api)
-- [Modelos de Datos](#-modelos-de-datos)
-- [Uso](#-uso)
-- [Características](#-características)
-
----
-
-## Descripción
-
-PersonasAPI es una API RESTful que proporciona funcionalidades para la gestión completa de personas y autenticación de usuarios. Utiliza Supabase como base de datos PostgreSQL en la nube, implementando mejores prácticas de arquitectura limpia y separación de responsabilidades.
-
-### Funcionalidades Principales
-
-- ✅ CRUD completo de personas
-- ✅ Sistema de autenticación (Login/Register)
-- ✅ Encriptación de contraseñas con BCrypt
-- ✅ Validación de datos con Data Annotations
-- ✅ Integración con Supabase (PostgreSQL)
-- ✅ Documentación automática con Swagger/OpenAPI
-- ✅ Manejo robusto de errores
-- ✅ CORS configurado para desarrollo
-
----
-
-## Tecnologías
-
-### Framework y Runtime
-- **.NET 8.0** - Framework principal
-- **ASP.NET Core** - Framework web
-
-### Paquetes NuGet
-| Paquete | Versión | Propósito |
-|---------|---------|-----------|
-| `Supabase` | 1.1.1 | Cliente de Supabase |
-| `BCrypt.Net-Next` | 4.0.3 | Encriptación de contraseñas |
-| `Npgsql.EntityFrameworkCore.PostgreSQL` | 8.0.11 | Proveedor PostgreSQL |
-| `Swashbuckle.AspNetCore` | 10.1.0 | Documentación Swagger |
-| `Microsoft.AspNetCore.OpenApi` | 10.0.2 | Especificación OpenAPI |
-
-### Base de Datos
-- **Supabase (PostgreSQL)** - Base de datos en la nube
-
----
-
-## Arquitectura
-
-El proyecto implementa una arquitectura en capas con separación de responsabilidades:
-
-![Capas](./images/capas.png)
-
-
-### Principios Aplicados
-- **Separación de Responsabilidades**: Cada capa tiene una función específica
-- **Inyección de Dependencias**: Gestión automática de dependencias
-- **DTOs**: Objetos de transferencia para desacoplar modelos de la API
-- **Repository Pattern**: Abstracción del acceso a datos
-- **Clean Code**: Código legible y mantenible
-
----
-
-## Requisitos Previos
-
-Antes de comenzar, asegúrate de tener instalado:
-
-- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) - v8.0 o superior
-- [Visual Studio 2022](https://visualstudio.microsoft.com/) o [VS Code](https://code.visualstudio.com/)
-- Cuenta en [Supabase](https://supabase.com) (gratuita)
-- Git (opcional)
-
----
-
-## Instalación
-
-### 1. Clonar o descargar el proyecto
-
-bash
 git clone <url-del-repositorio>
 cd PersonasApi
+# PersonasAPI - .NET 8 Backend
 
+REST API built with .NET 8 and integrated with Supabase for managing people and user authentication.
 
-## Estructura del Proyecto
+## Table of Contents
+
+- [Description](#description)
+- [Technologies](#technologies)
+- [Architecture](#architecture)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Project Structure](#project-structure)
+- [Features](#features)
+
+---
+
+## Description
+
+PersonasAPI is a RESTful API that provides full management of people records and user authentication. It uses Supabase (PostgreSQL) as the cloud database and follows clean architecture principles and separation of concerns.
+
+### Main Features
+
+- Full CRUD for people
+- Authentication (Register / Login)
+- Password hashing with BCrypt
+- Data validation using Data Annotations
+- Integration with Supabase (PostgreSQL)
+- Automatic API documentation with Swagger/OpenAPI
+- Error handling and logging
+
+---
+
+## Technologies
+
+### Framework and Runtime
+- **.NET 8.0** - primary runtime
+- **ASP.NET Core** - web framework
+
+### NuGet Packages
+| Package | Version | Purpose |
+|---------|---------|---------|
+| `Supabase` | 1.1.1 | Supabase client |
+| `BCrypt.Net-Next` | 4.0.3 | Password hashing |
+| `Npgsql.EntityFrameworkCore.PostgreSQL` | 8.0.11 | PostgreSQL provider |
+| `Swashbuckle.AspNetCore` | 10.1.0 | Swagger documentation |
+| `Microsoft.AspNetCore.OpenApi` | 10.0.2 | OpenAPI support |
+
+### Database
+- **Supabase (PostgreSQL)** - cloud-hosted database
+
+---
+
+## Architecture
+
+The project follows a layered architecture with clear separation of concerns.
+
+![Layers](./images/capas.png)
+
+### Applied Principles
+- Separation of Concerns
+- Dependency Injection
+- DTOs for API boundaries
+- Repository Pattern for data access
+- Clean, maintainable code
+
+---
+
+## Prerequisites
+
+Make sure you have installed:
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+- Visual Studio 2022 or [VS Code](https://code.visualstudio.com/)
+- Supabase account
+- Git (optional)
+
+---
+
+## Installation
+
+### 1. Clone the repository
+
+```bash
+git clone <repository-url>
+cd PersonasApi
+```
+
+## Project Structure
 
 PersonasApi/
 │
-├── Configuration/              # Configuraciones
-│   └── SupabaseSettings.cs    # Settings de Supabase
+├── Configuration/              # Configuration
+│   └── SupabaseSettings.cs     # Supabase settings
 │
-├── Controllers/                # Controladores API
-│   ├── AuthController.cs      # Endpoints de autenticación
-│   └── PersonasController.cs  # Endpoints de personas
+├── Controllers/                # API controllers
+│   ├── AuthController.cs       # Authentication endpoints
+│   └── PersonasController.cs   # People endpoints
 │
-├── Data/                       # Capa de datos
-│   ├── SupabaseContext.cs     # Cliente de Supabase
-│   └── Repositories/          # Repositorios
+├── Data/                       # Data layer
+│   ├── SupabaseContext.cs      # Supabase client wrapper
+│   └── Repositories/           # Repositories
 │       ├── PersonaRepository.cs
 │       └── UserRepository.cs
 │
-├── Models/                     # Modelos de dominio
-│   ├── Persona.cs             # Entidad Persona
-│   ├── User.cs                # Entidad Usuario
-│   └── DTOs/                  # Data Transfer Objects
+├── Models/                     # Domain models
+│   ├── Persona.cs              # Person entity
+│   ├── User.cs                 # User entity
+│   └── DTOs/                   # Data Transfer Objects
 │       ├── PersonaDTO.cs
 │       ├── CreatePersonaDTO.cs
 │       ├── UpdatePersonaDTO.cs
@@ -119,39 +116,39 @@ PersonasApi/
 │       ├── RegisterDTO.cs
 │       └── UserDTO.cs
 │
-├── Services/                   # Lógica de negocio
-│   ├── PersonaService.cs      # Servicio de personas
-│   └── AuthService.cs         # Servicio de autenticación
+├── Services/                   # Business logic
+│   ├── PersonaService.cs       # People service
+│   └── AuthService.cs          # Authentication service
 │
 ├── Properties/
-│   └── launchSettings.json    # Configuración de ejecución
+│   └── launchSettings.json     # Launch settings
 │
-├── Program.cs                  # Punto de entrada
-├── appsettings.json           # Configuración general
-└── PersonasApi.csproj         # Archivo del proyecto
+├── Program.cs                  # Application entry point
+├── appsettings.json            # Application configuration
+└── PersonasApi.csproj          # Project file
 
-## ✨ Características
+## Features
 
-**Seguridad**
-- Contraseñas hasheadas con BCrypt (salt rounds automático)
-- Validación de datos en todos los endpoints
-- Prevención de duplicados (email, número identificación, usuario)
-- CORS configurado
+### Security
+- Passwords hashed with BCrypt
+- Input validation on all endpoints
+- Duplicate prevention (email, identification number, username)
+- CORS configured for development
 
-**Validaciones**
-- Data Annotations en DTOs
-- Validación de modelo automática
-- Validaciones de negocio en Services
-- Mensajes de error descriptivos
+### Validation
+- Data Annotations on DTOs
+- Automatic model validation
+- Business validations in services
+- Clear error messages
 
-**Base de Datos**
-- Columnas calculadas (nombre_completo, identificacion_completa)
-- Constraints de unicidad
-- Foreign keys con cascade delete
-- Timestamps automáticos
+### Database
+- Computed columns (full name, full identification)
+- Unique constraints
+- Foreign keys with cascade delete
+- Automatic timestamps
 
-**Desarrollo**
-- Hot reload habilitado
-- Logging configurado
+### Development
+- Hot reload enabled
+- Logging configured
 - Environment-based configuration
 - Swagger/OpenAPI 3.0
